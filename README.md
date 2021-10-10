@@ -1,5 +1,6 @@
 ## Table of contents
 ### 1. Algorithms
+![](array_sorting_algorithms.png)
 - [Binary Search Tree](Algorithms/Binary%20Search%20Tree)
 - [Divide And Conquer](Algorithms/Divide%20and%20Conquer)
 - [Recursion](Algorithms/Recursion)
@@ -8,6 +9,7 @@
 - [Merge Sort](Algorithms/Sorting/Merge%20Sort)
 - [Selection Sort](Algorithms/Sorting/Selection%20Sort)
 ### 2. Data Structures
+![](common_data_structures.png)
 - [Linked List](Data%20Structures/Linked%20List)
 - [Stacks and Queues](Data%20Structures/Stacks%20and%20Queues)
 - [Trie](Data%20Structures/Trie)
@@ -20,3 +22,6 @@
 - [Factorial](Interview%20Questions/Question%203%20-%20Factorial)
 - [Fibonacci](Interview%20Questions/Question%204%20-%20Fibonacci)
 - [Reserve a string](Interview%20Questions/Question%202%20-%20Reverse%20linked%20list)
+
+## BigO
+![](bigo.png)
