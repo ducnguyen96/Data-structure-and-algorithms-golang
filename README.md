@@ -1,7 +1,9 @@
 ## Table of contents
 ### 1. Algorithms
 ![](array_sorting_algorithms.png)
-- [Binary Search Tree](Algorithms/Binary%20Search%20Tree)
+- [Binary Search Tree](Algorithms/Sorting)
+- [Breadth First Search](Algorithms/Sorting)
+- [Depth First Search](Algorithms/Sorting)
 - [Divide And Conquer](Algorithms/Divide%20and%20Conquer)
 - [Recursion](Algorithms/Recursion)
 - [Bubble Sort](Algorithms/Sorting/Bubble%20Sort)

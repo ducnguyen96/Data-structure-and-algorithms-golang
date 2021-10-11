@@ -3,12 +3,16 @@ package main
 import "fmt"
 
 func InsertionSort(arr []int) []int {
+	// Loop through the array
 	for i := 1; i < len(arr); i++ {
 		temp := arr[i]
+		// Loop through the sorted part
 		for j := 0; j < i; j++ {
+			// Found the right position
 			if arr[j] > arr[i] {
 				// insertion here
-				//arr[j:i+1] = append([]int{},arr[i], arr[j], arr[j+1:i]...)
+				// shift bigger item to the right
+				// arr[j:i+1] = append([]int{},arr[i], arr[j], arr[j+1:i]...)
 				for k := i; k > j; k-- {
 					arr[k] = arr[k-1]
 				}
