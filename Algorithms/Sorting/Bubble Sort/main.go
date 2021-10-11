@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func bubbleSort(arr []int) []int {
+func BubbleSort(arr []int) []int {
 	l := len(arr)
 	for i := l-1; i > 0; i-- {
 		for j := 0; j < i; j++ {
@@ -16,5 +16,5 @@ func bubbleSort(arr []int) []int {
 
 func main() {
 	arr := []int{99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0}
-	fmt.Println(bubbleSort(arr))
+	fmt.Println(BubbleSort(arr))
 }

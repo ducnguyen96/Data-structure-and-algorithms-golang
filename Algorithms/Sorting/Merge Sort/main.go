@@ -2,15 +2,15 @@ package main
 
 import "fmt"
 
-func mergeSort(nums []int) []int {
+func MergeSort(nums []int) []int {
 	l := len(nums)
-	if l == 1 {
+	if l <= 1 {
 		return nums
 	} else {
 		// divide
 		mid := (l-1)/2
-		left := mergeSort(nums[:mid+1])
-		right := mergeSort(nums[mid+1:])
+		left := MergeSort(nums[:mid+1])
+		right := MergeSort(nums[mid+1:])
 
 		// conquer
 		merge := make([]int, l)
@@ -45,6 +45,6 @@ func mergeSort(nums []int) []int {
 }
 
 func main() {
-	nums := []int{6, 5, 3, 1, 8, 7, 2, 4}
-	fmt.Println(mergeSort(nums))
+	nums := []int{3, 1, 11, 12, 13, 4, 5, 2, 8, 9, 7, 6, 10}
+	fmt.Println(MergeSort(nums))
 }
