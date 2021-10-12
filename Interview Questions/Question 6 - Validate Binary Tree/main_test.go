@@ -47,7 +47,7 @@ func TestIsValidBST(t *testing.T) {
 		NotValidateInsert([]*TreeNode{root}, nodes, index)
 
 		// algorithm
-		algorithmResult := IsValidBST(root)
+		algorithmResult := AlternativeSolution(root)
 
 		// compare
 		if algorithmResult != testCase.isValid {
