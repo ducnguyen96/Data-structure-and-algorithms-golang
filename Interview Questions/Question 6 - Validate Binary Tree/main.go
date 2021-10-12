@@ -2,36 +2,63 @@ package main
 
 import "fmt"
 
-// Node represents the components of a binary search tree
-type Node struct {
+// TreeNode represents the components of a binary search tree
+type TreeNode struct {
 	Val   int
-	Left  *Node
-	Right *Node
+	Left  *TreeNode
+	Right *TreeNode
 }
 
-func (n *Node) NotValidateInsert(k *int) {
-	if n.Left == nil {
-		if k == nil {
-			n.Left = nil
-		} else {
-			n.Left = &Node{Val: *k}
-		}
-	} else if n.Right == nil {
-		if k == nil {
-			n.Right = nil
-		} else {
-			n.Right = &Node{Val: *k}
-		}
-	} else {
-		n.Left.NotValidateInsert(k)
+// {1, 4, nil, nil, 3, 6}
+func NotValidateInsert(queue []*TreeNode, k []*int, index *int) {
+	l := len(k)
+	if *index > l {
+		return
 	}
+
+	currentNode := queue[0]
+	queue = queue[1:]
+
+	if *index < l {
+		if k[*index] != nil {
+			currentNode.Left = &TreeNode{Val: *k[*index]} // {1}
+			queue = append(queue, currentNode.Left)
+		}
+		*index++ // 1 4
+	} else {
+		return
+	}
+
+	if *index < l {
+		if k[*index] != nil {
+			currentNode.Right = &TreeNode{Val: *k[*index]} // {4}
+			queue = append(queue, currentNode.Right)
+		}
+		*index++ // 2 5
+	} else {
+		return
+	}
+
+	NotValidateInsert(queue, k, index)
 }
 
-func isValidBST(root *Node) bool {
-	return validateDFS(root, []*Node{})
+func IsValidBST(root *TreeNode) bool {
+	if root.Left == nil && root.Right == nil {
+		return true
+	}
+	left := validateDFS(root.Left, []*TreeNode{root})
+	if !left {
+		return false
+	}
+	right := validateDFS(root.Right, []*TreeNode{root})
+	return left && right
 }
 
-func validateDFS(currentNode *Node, previousNode []*Node) bool {
+func validateDFS(currentNode *TreeNode, previousNode []*TreeNode) bool {
+	if currentNode == nil {
+		return true
+	}
+
 	// validate currentNode
 	var isCurrentNodeValid bool = true
 	l := len(previousNode)
@@ -39,9 +66,17 @@ func validateDFS(currentNode *Node, previousNode []*Node) bool {
 	// validate currentNode with latest node
 	if l > 0 {
 		if currentNode.Val > previousNode[l-1].Val {
+			if previousNode[l-1].Right == nil {
+				return false
+			}
 			isCurrentNodeValid = currentNode.Val == previousNode[l-1].Right.Val
-		} else {
+		} else if currentNode.Val < previousNode[l-1].Val {
+			if previousNode[l-1].Left == nil {
+				return false
+			}
 			isCurrentNodeValid = currentNode.Val == previousNode[l-1].Left.Val
+		} else {
+			return false
 		}
 	}
 
@@ -50,13 +85,15 @@ func validateDFS(currentNode *Node, previousNode []*Node) bool {
 	}
 
 	if l > 1 {
-		temp := previousNode[l-1]
+		// temp := previousNode[l-1]
 		// validate currentNode with previous nodes
-		for i := l - 2; i >= 0; i-- {
-			if temp.Val < previousNode[i].Val {
-				isCurrentNodeValid = currentNode.Val < previousNode[i].Val
+		for i := l - 1; i >= 1; i-- {
+			if previousNode[i].Val < previousNode[i-1].Val {
+				isCurrentNodeValid = currentNode.Val < previousNode[i-1].Val
+			} else if previousNode[i].Val > previousNode[i-1].Val {
+				isCurrentNodeValid = currentNode.Val > previousNode[i-1].Val
 			} else {
-				isCurrentNodeValid = currentNode.Val > previousNode[i].Val
+				return false
 			}
 
 			if !isCurrentNodeValid {
@@ -65,27 +102,45 @@ func validateDFS(currentNode *Node, previousNode []*Node) bool {
 		}
 	}
 
-	if currentNode.Left != nil {
+	if currentNode.Left != nil && isCurrentNodeValid {
 		leftPrevious := append(previousNode, currentNode)
-		return validateDFS(currentNode.Left, leftPrevious)
+		isCurrentNodeValid = validateDFS(currentNode.Left, leftPrevious)
 	}
 
-	if currentNode.Right != nil {
+	if currentNode.Right != nil && isCurrentNodeValid {
 		rightPrevious := append(previousNode, currentNode)
-		return validateDFS(currentNode.Left, rightPrevious)
-	} else {
-		return true
+		isCurrentNodeValid = validateDFS(currentNode.Right, rightPrevious)
 	}
+
+	return isCurrentNodeValid
 }
 
 func main() {
-	root := &Node{Val: 9}
-	values := []interface{}{4, 20, 1, nil, 6, 15, 170}
-	for _, v := range values {
+	// [2,1,3]
+	// [5,1,4,null,null,3,6]
+	// [32,26,47,19,null,null,56,null,27, 55] v
+	// [9, 4, 20, 1, 6, 15, 170]
+	// [1, 1]
+	// [0,nil,-1]
+	// [3,1,5,0,2,4,6,null,null,null,3]
+	// [5,4,6,null,null,3,7]
+
+	root := &TreeNode{Val: 5}
+	values := []interface{}{4, 6, nil, nil, 3, 7}
+	nodes := make([]*int, len(values))
+	var index *int = new(int)
+	*index = 0
+	for i, v := range values {
 		var addr *int
-		if 
-		fmt.Println(addr == nil)
-		root.NotValidateInsert(addr)
+		if v != nil {
+			addr = new(int)
+			*addr = v.(int)
+		}
+		nodes[i] = addr
 	}
-	// fmt.Println(isValidBST(root))
+
+	NotValidateInsert([]*TreeNode{root}, nodes, index)
+
+	isValid := IsValidBST(root)
+	fmt.Println("isValid :", isValid)
 }

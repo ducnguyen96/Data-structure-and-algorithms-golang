@@ -4,164 +4,54 @@ import (
 	"testing"
 )
 
-func TestBinarySearch(t *testing.T) {
-	testCases := []struct {
-		arr   []int
-		k     int
-		exist bool
-	}{
-		{arr: []int{9, 4, 20, 1, 6, 15, 170}, k: 15, exist: true},
-		{arr: []int{9, 4, 20, 1, 6, 15, 170}, k: 6, exist: true},
-		{arr: []int{9, 4, 20, 1, 6, 15, 170}, k: 10, exist: false},
-	}
-
-	for _, testCase := range testCases {
-		tree := &Node{Val: testCase.arr[0]}
-		for _, node := range testCase.arr {
-			tree.Insert(node)
-		}
-
-		algorithmResult := tree.BinarySearch(testCase.k)
-
-		if testCase.exist != algorithmResult {
-			t.Errorf("Wrong, got: %v, want: %v.", testCase.exist, algorithmResult)
-		}
-	}
-}
-
-func TestBreadthFirstSearch(t *testing.T) {
-	testCases := []struct {
-		arr    []int
-		search []int
-	}{
-		{arr: []int{9, 4, 20, 1, 6, 15, 170}, search: []int{9, 4, 20, 1, 6, 15, 170}},
-		{arr: []int{9, 6, 12, 1, 4, 34, 45}, search: []int{9, 6, 12, 1, 34, 4, 45}},
-	}
-
-	for _, testCase := range testCases {
-		tree := &Node{Val: testCase.arr[0]}
-		for _, node := range testCase.arr {
-			tree.Insert(node)
-		}
-
-		algorithmResult := tree.BreadthFirstSearch()
-
-		for index, _ := range testCase.search {
-			if testCase.search[index] != algorithmResult[index] {
-				t.Errorf("Wrong, got: %v, want: %v.", algorithmResult[index], testCase.search[index])
-			}
-		}
-	}
-}
-
-func TestBreadthFirstSearchRecursive(t *testing.T) {
-	testCases := []struct {
-		arr    []int
-		search []int
-	}{
-		{arr: []int{9, 4, 20, 1, 6, 15, 170}, search: []int{9, 4, 20, 1, 6, 15, 170}},
-		{arr: []int{9, 6, 12, 1, 4, 34, 45}, search: []int{9, 6, 12, 1, 34, 4, 45}},
-	}
-
-	for _, testCase := range testCases {
-		tree := &Node{Val: testCase.arr[0]}
-		for _, node := range testCase.arr {
-			tree.Insert(node)
-		}
-
-		algorithmResult := tree.BreadthFirstSearchRecursive([]*Node{tree}, []int{})
-
-		for index := range testCase.search {
-			if testCase.search[index] != algorithmResult[index] {
-				t.Errorf("Wrong, got: %v, want: %v.", algorithmResult[index], testCase.search[index])
-			}
-		}
-	}
-}
-
-func TestDepthFirstSearchInOrder(t *testing.T) {
-	testCases := []struct {
-		arr    []int
-		search []int
-	}{
-		{arr: []int{9, 4, 6, 20, 170, 15, 1}, search: []int{1, 4, 6, 9, 15, 20, 170}},
-	}
-
-	for _, testCase := range testCases {
-		tree := &Node{Val: testCase.arr[0]}
-		for _, node := range testCase.arr {
-			tree.Insert(node)
-		}
-
-		algorithmResult := tree.DepthFirstSearchInOrder()
-
-		for index := range testCase.search {
-			if testCase.search[index] != algorithmResult[index] {
-				t.Errorf("Wrong, got: %v, want: %v.", algorithmResult[index], testCase.search[index])
-			}
-		}
-	}
-}
-
-func TestDepthFirstSearchPreOrder(t *testing.T) {
-	testCases := []struct {
-		arr    []int
-		search []int
-	}{
-		{arr: []int{9, 4, 6, 20, 170, 15, 1}, search: []int{9, 4, 1, 6, 20, 15, 170}},
-	}
-
-	for _, testCase := range testCases {
-		tree := &Node{Val: testCase.arr[0]}
-		for _, node := range testCase.arr {
-			tree.Insert(node)
-		}
-
-		algorithmResult := tree.DepthFirstSearchPreOrder()
-
-		for index := range testCase.search {
-			if testCase.search[index] != algorithmResult[index] {
-				t.Errorf("Wrong, got: %v, want: %v.", algorithmResult[index], testCase.search[index])
-			}
-		}
-	}
-}
-
-func TestDepthFirstSearchPostOrder(t *testing.T) {
-	testCases := []struct {
-		arr    []int
-		search []int
-	}{
-		{arr: []int{9, 4, 6, 20, 170, 15, 1}, search: []int{1, 6, 4, 15, 170, 20, 9}},
-	}
-
-	for _, testCase := range testCases {
-		tree := &Node{Val: testCase.arr[0]}
-		for _, node := range testCase.arr {
-			tree.Insert(node)
-		}
-
-		algorithmResult := tree.DepthFirstSearchPostOrder()
-
-		for index := range testCase.search {
-			if testCase.search[index] != algorithmResult[index] {
-				t.Errorf("Wrong, got: %v, want: %v.", algorithmResult[index], testCase.search[index])
-			}
-		}
-	}
-}
-
 // [2,1,3]
 // [5,1,4,null,null,3,6]
-// [32,26,47,19,null,null,56,null,27, 55]
+// [32,26,47,19,null,null,56,null,27, 55] v
 // [9, 4, 20, 1, 6, 15, 170]
+// [1, 1]
+// [0,nil,-1]
+// [3,1,5,0,2,4,6,null,null,null,3]
+// [5,4,6,null,null,3,7]
 
-func TestValidateDFS(t *testing.T) {
+func TestIsValidBST(t *testing.T) {
 	testCases := []struct {
-		nodeVals []interface{}
-		isValid  bool
+		nodeValues []interface{}
+		isValid    bool
 	}{
-		{nodeVals: []interface{}{2, 1, 3}, isValid: true},
-		{nodeVals: []interface{}{5, 1, 4, nil, nil, 3, 6}, isValid: false},
+		{nodeValues: []interface{}{2, 1, 3}, isValid: true},
+		{nodeValues: []interface{}{5, 1, 4, nil, nil, 3, 6}, isValid: false},
+		{nodeValues: []interface{}{32, 26, 47, 19, nil, nil, 56, nil, 27, 55}, isValid: false},
+		{nodeValues: []interface{}{9, 4, 20, 1, 6, 15, 170}, isValid: true},
+		{nodeValues: []interface{}{1, 1}, isValid: false},
+		{nodeValues: []interface{}{0, nil, -1}, isValid: false},
+		{nodeValues: []interface{}{3, 1, 5, 0, 2, 4, 6, nil, nil, nil, 3}, isValid: false},
+		{nodeValues: []interface{}{5, 4, 6, nil, nil, 3, 7}, isValid: false},
+	}
+
+	for _, testCase := range testCases {
+		// build tree
+		root := &TreeNode{Val: testCase.nodeValues[0].(int)}
+		values := testCase.nodeValues[1:]
+		nodes := make([]*int, len(values))
+		var index *int = new(int)
+		*index = 0
+		for i, v := range values {
+			var addr *int
+			if v != nil {
+				addr = new(int)
+				*addr = v.(int)
+			}
+			nodes[i] = addr
+		}
+
+		NotValidateInsert([]*TreeNode{root}, nodes, index)
+
+		// algorithm
+		algorithmResult := IsValidBST(root)
+
+		// compare
+		if algorithmResult != testCase.isValid {
+			t.Errorf("Wrong, got: %v, want: %v.", algorithmResult, testCase.isValid)
+		}
 	}
 }
