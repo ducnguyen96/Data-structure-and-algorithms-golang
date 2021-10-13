@@ -13,6 +13,7 @@
 - [Insertion Sort](Algorithms/Sorting/Insertion%20Sort)
 - [Merge Sort](Algorithms/Sorting/Merge%20Sort)
 - [Selection Sort](Algorithms/Sorting/Selection%20Sort)
+- [Dynamic Programming](Algorithms/Dynamic%20Programming)
 
 ### 2. Data Structures
 
@@ -32,7 +33,11 @@
 - [Factorial](Interview%20Questions/Question%203%20-%20Factorial)
 - [Fibonacci](Interview%20Questions/Question%204%20-%20Fibonacci)
 - [Reserve a string](Interview%20Questions/Question%202%20-%20Reverse%20linked%20list)
-
+- [Validate Binary Search Tree](Interview%20Questions/Question%206%20-%20Validate%20Binary%20Tree)
+- [Linux Dir Tree](Interview%20Questions/Question%207%20-%20Linux%20Dir%20Tree)
+- [House Robber](Interview%20Questions/Question%208%20-%20House%20Robber)
+- [Best Time To Buy And Sell Stock](Interview%20Questions/Question%209%20-%20Best%20Time%20to%20Buy%20and%20Sell%20Stock)
+- [Climbing Stairs](Interview%20Questions/Question%2010%20-%20Climbing%20Stairs)
 ## BigO
 
 ![](bigo.png)
