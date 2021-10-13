@@ -38,6 +38,10 @@
 - [House Robber](Interview%20Questions/Question%208%20-%20House%20Robber)
 - [Best Time To Buy And Sell Stock](Interview%20Questions/Question%209%20-%20Best%20Time%20to%20Buy%20and%20Sell%20Stock)
 - [Climbing Stairs](Interview%20Questions/Question%2010%20-%20Climbing%20Stairs)
+- [Binary Search](Interview%20Questions/Question%2011%20-%20Binary%20Search)
+- [Construct Binary Search Tree From Preorder Traversal](Interview%20Questions/Question%2012%20-%20Construct%20Binary%20Search%20Tree%20from%20Preorder%20Traversal)
+- [First Bad Version](Interview%20Questions/Question%2013%20-%20First%20Bad%20Version)
+- [Search Insert Position](Interview%20Questions/Question%2014%20-%20Search%20Insert%20Position)
 ## BigO
 
 ![](bigo.png)
